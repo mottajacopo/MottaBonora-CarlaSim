@@ -45,8 +45,8 @@ Installation:
 **6-** Una volta nel client:
 	 P            : toggle autopilot
  	 TAB          : change sensor position (mettere camera frontale)
-        C            : change weather (funziona se dynamic weather è disabilitato)
-        F1           : toggle HUD
+         C            : change weather (funziona se dynamic weather è disabilitato)
+         F1           : toggle HUD
 
 
 #Scenario Runner guide
@@ -58,7 +58,7 @@ Installation:
 	python scenario_runner.py --scenario NumeScenario_numero --reloadWorld	
 	es : python scenario_runner.py --scenario FollowLeadingVehicle_1 --reloadWorld
 
-	usage: scenario_runner.py [-h] [--host HOST] [--port PORT] [--debug]
+usage: scenario_runner.py [-h] [--host HOST] [--port PORT] [--debug]
                           [--output] [--file] [--junit]
                           [--outputDir OUTPUTDIR] [--waitForEgo]
                           [--configFile CONFIGFILE]
@@ -70,7 +70,7 @@ Installation:
                           [--route ROUTE [ROUTE ...]] [--record]
                           [--timeout TIMEOUT] [-v]
 					     
-	Lista scenari:
+Lista scenari:
 		FollowLeadingVehicle
 		FollowLeadingVehicleWithObstacle
 		VehicleTurningRight
@@ -85,13 +85,12 @@ Installation:
 		SignalizedJunctionRightTurn
 		SignalizedJunctionLeftTurn
 			
-	Si possono lanciare anche tutti gli scenari di una specifica classe con questo comendo
-		python scenario_runner.py --scenario group:FollowLeadingVehicle
+ Si possono lanciare anche tutti gli scenari di una specifica classe con questo comendo
+ python scenario_runner.py --scenario group:FollowLeadingVehicle
 
 **3-** Dalla cartella di scenario runner avviare il client eseguendo manual_controll.py
-
 	con python manual_controll.py --autopilot si può far partire l'auto in autopilota da subito
-
+	
 **4-** Una volta nel client:
 	P            : toggle autopilot
  	TAB          : change sensor position (mettere camera frontale)
