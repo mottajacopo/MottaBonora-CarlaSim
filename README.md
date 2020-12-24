@@ -67,15 +67,15 @@ Installation:
 
 	usage: scenario_runner.py [-h] [--host HOST] [--port PORT] [--debug]
                          	 [--output] [--file] [--junit]
-                        	  [--outputDir OUTPUTDIR] [--waitForEgo]
+                        	 [--outputDir OUTPUTDIR] [--waitForEgo]
                          	 [--configFile CONFIGFILE]
                          	 [--additionalScenario ADDITIONALSCENARIO]
                          	 [--reloadWorld] [--scenario SCENARIO] [--randomize]
-                          	[--repetitions REPETITIONS] [--list] [--agent AGENT]
-                          	[--agentConfig AGENTCONFIG]
-                          	[--openscenario OPENSCENARIO]
+                          	 [--repetitions REPETITIONS] [--list] [--agent AGENT]
+                               	 [--agentConfig AGENTCONFIG]
+                          	 [--openscenario OPENSCENARIO]
                          	 [--route ROUTE [ROUTE ...]] [--record]
-                          	[--timeout TIMEOUT] [-v]
+                          	 [--timeout TIMEOUT] [-v]
 					     
 	Lista scenari:
 		FollowLeadingVehicle
