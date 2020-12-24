@@ -17,3 +17,35 @@ Installation:
        to the arrangement of your folders: 
        
      ![PYTHONPATH](https://github.com/mottajacopo/MottaBonora-CarlaSim/blob/main/PYTHONPATH.PNG)
+     
+     
+     
+# Carla guide
+
+1- Aprire il cmd nella cartella di Carla (sul desktop)
+	Lanciare il server con il seguente comando:
+	CarlaUE4.exe -quality-level=Epic
+
+2- Aprire il cmd nella cartella PythonAPI/util
+	Lanciare il seguente comando per scegliere la mappa (la milgiore è town05):
+	python config.py --map Town05
+
+3- Aprire il cmd nella cartella PythonAPI/examples
+	Lanciare il seguente comando per polopare la mappa:
+	python spawn_npc.py -n 80    #spawna 80 agenti
+
+3- Aprire il cmd nella cartella PythonAPI/examples
+	Lanciare il seguente comando per abilitare il meteo e l'ora del giorno dinamica:
+	python dynamic_weather.py
+
+4- Aprire il cmd nella cartella PythonAPI/examples
+	Lanciare il seguente comando per avviare il client in guida manuale
+	python manual_control.py
+
+5- Una volta nel client:
+	 P            : toggle autopilot
+ 	 TAB          : change sensor position (mettere camera frontale)
+        C            : change weather (funziona se dynamic weather è disabilitato)
+        F1           : toggle HUD
+
+6- Con OBS registrare una volta che si verifica uno scenario
