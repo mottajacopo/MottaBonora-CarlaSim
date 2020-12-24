@@ -72,7 +72,7 @@ Installation:
                          	 [--additionalScenario ADDITIONALSCENARIO]
                          	 [--reloadWorld] [--scenario SCENARIO] [--randomize]
                           	 [--repetitions REPETITIONS] [--list] [--agent AGENT]
-                           [--agentConfig AGENTCONFIG]
+                             [--agentConfig AGENTCONFIG]
                           	 [--openscenario OPENSCENARIO]
                          	 [--route ROUTE [ROUTE ...]] [--record]
                           	 [--timeout TIMEOUT] [-v]
