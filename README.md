@@ -15,4 +15,5 @@ Installation:
 - update system environment variables:
        add a variable named PYTHONPATH with the following paths changing the path according 
        to the arrangement of your folders: 
+       
        ![PYTHONPATH](https://github.com/mottajacopo/MottaBonora-CarlaSim/blob/main/PYTHONPATH.PNG)
