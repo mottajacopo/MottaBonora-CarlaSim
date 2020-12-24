@@ -49,14 +49,14 @@ Installation:
          F1           : toggle HUD
 
 
-#Scenario Runner guide
+# Scenario Runner guide
 
-**1-** Lanciare il server cliccando su CarlaUE4.exe della cartella di Carla
+**1-**  Lanciare il server cliccando su CarlaUE4.exe della cartella di Carla
 
-**2-** Aprire il cmd nella cartella scneraio_runner 0.9.9
-	Lanciare il seguente comando:
-	python scenario_runner.py --scenario NumeScenario_numero --reloadWorld	
-	es : python scenario_runner.py --scenario FollowLeadingVehicle_1 --reloadWorld
+**2-**  Aprire il cmd nella cartella scneraio_runner 0.9.9
+		Lanciare il seguente comando:
+		python scenario_runner.py --scenario NumeScenario_numero --reloadWorld	
+		es : python scenario_runner.py --scenario FollowLeadingVehicle_1 --reloadWorld
 
 usage: scenario_runner.py [-h] [--host HOST] [--port PORT] [--debug]
                           [--output] [--file] [--junit]
@@ -89,7 +89,7 @@ Lista scenari:
  python scenario_runner.py --scenario group:FollowLeadingVehicle
 
 **3-** Dalla cartella di scenario runner avviare il client eseguendo manual_controll.py
-	con python manual_controll.py --autopilot si può far partire l'auto in autopilota da subito
+		con python manual_controll.py --autopilot si può far partire l'auto in autopilota da subito
 	
 **4-** Una volta nel client:
 	P            : toggle autopilot
