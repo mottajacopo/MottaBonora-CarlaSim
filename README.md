@@ -14,4 +14,4 @@ Installation:
 - extract Carla and Scenario runner 
 - update system environment variables:
        add PYTHONPATH with the following paths: 
-       ![Screenshot](PYTHONPATH.png)
+       ![Screenshot](https://github.com/mottajacopo/MottaBonora-CarlaSim/blob/main/PYTHONPATH.PNG)
