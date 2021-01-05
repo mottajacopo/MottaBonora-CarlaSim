@@ -16,7 +16,7 @@
 - extract Carla release and Scenario runner (release or cloned repo)
 - update system environment variables:
        add a variable named PYTHONPATH with the following paths changing the path according 
-       to the arrangement of your folders and the version of carla: 
+       to the arrangement of your folders and the version of carla you want to use: 
        
      ![PYTHONPATH](https://github.com/mottajacopo/MottaBonora-CarlaSim/blob/main/PYTHONPATH.PNG)
      
