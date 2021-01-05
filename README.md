@@ -103,7 +103,7 @@
 
 **3-** Dalla cartella di scenario runner avviare il client eseguendo manual_control.py
 
-	python manual_control.py --autopilot si può far partire l'auto in autopilota da subito
+	python manual_control.py --autopilot # con questa opzione si può far partire l'auto in autopilota da subito
 	
 **4-** Una volta nel client:
 
