@@ -66,18 +66,6 @@
 		
 		python scenario_runner.py --scenario NumeScenario_numero --reloadWorld	
 		es : python scenario_runner.py --scenario FollowLeadingVehicle_1 --reloadWorld
-
-	usage: scenario_runner.py [-h] [--host HOST] [--port PORT] [--debug]
-                         	 [--output] [--file] [--junit]
-                        	 [--outputDir OUTPUTDIR] [--waitForEgo]
-                         	 [--configFile CONFIGFILE]
-                         	 [--additionalScenario ADDITIONALSCENARIO]
-                         	 [--reloadWorld] [--scenario SCENARIO] [--randomize]
-                          	 [--repetitions REPETITIONS] [--list] [--agent AGENT]
-                             [--agentConfig AGENTCONFIG]
-                          	 [--openscenario OPENSCENARIO]
-                         	 [--route ROUTE [ROUTE ...]] [--record]
-                          	 [--timeout TIMEOUT] [-v]
 					     
 	Lista scenari:
 		FollowLeadingVehicle
@@ -97,6 +85,10 @@
  Si possono lanciare anche tutti gli scenari di una specifica classe con questo comendo
  
  		python scenario_runner.py --scenario group:FollowLeadingVehicle
+		
+ Invece per lanciare uno scenario in formato openscenario si utilizza il seguente comando (specificando il path del file .xosc)
+ 		
+		python scenario_runner.py --openscenario C:\Users\studente1\Downloads\scenario_runner-master\srunner\examples\FollowLeadingVehicle_1 --reloadWorld
 
 **3-** Dalla cartella di scenario runner avviare il client eseguendo manual_controll.py
 
