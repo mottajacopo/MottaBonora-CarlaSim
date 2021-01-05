@@ -55,6 +55,7 @@
  	 TAB          : change sensor position (mettere camera frontale)
      C            : change weather (funziona se dynamic weather è disabilitato)
      F1           : toggle HUD
+     R            : toggle recording (frame as jpg)
 
 
 # Scenario Runner guide
@@ -110,3 +111,4 @@
  	TAB          : change sensor position (mettere camera frontale)
     C            : change weather (funziona se dynamic weather è disabilitato)
     F1           : toggle HUD
+    R            : toggle recording (frame as jpg)
