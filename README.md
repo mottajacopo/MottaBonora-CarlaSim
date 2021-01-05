@@ -27,7 +27,7 @@
 **1-** Aprire il cmd nella cartella di Carla (sul desktop)
 	Lanciare il server con il seguente comando:
 	
-	CarlaUE4.exe -quality-level=Epic
+	CarlaUE4.exe -quality-level=High
 
 **2-** Aprire il cmd nella cartella PythonAPI/util
 	Lanciare il seguente comando per scegliere la mappa (la milgiore è town05):
@@ -37,7 +37,7 @@
 **3-** Aprire il cmd nella cartella PythonAPI/examples
 	Lanciare il seguente comando per polopare la mappa:
 	
-	python spawn_npc.py -n 80    #spawna 80 agenti
+	python spawn_npc.py -n 50 -w 15    #spawna 50 vehicles and 15 pedestrians
 
 **4-** Aprire il cmd nella cartella PythonAPI/examples
 	Lanciare il seguente comando per abilitare il meteo e l'ora del giorno dinamica:
@@ -47,7 +47,7 @@
 **5-** Aprire il cmd nella cartella PythonAPI/examples
 	Lanciare il seguente comando per avviare il client in guida manuale
 	
-	python manual_control.py
+	python manual_control.py 
 
 **6-** Una volta nel client:
 
