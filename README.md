@@ -100,9 +100,9 @@
 		PedestrianCrossingFront.xosc
 		Slalom.xosc
 
-**3-** Dalla cartella di scenario runner avviare il client eseguendo manual_controll.py
+**3-** Dalla cartella di scenario runner avviare il client eseguendo manual_control.py
 
-	python manual_controll.py --autopilot si può far partire l'auto in autopilota da subito
+	python manual_control.py --autopilot si può far partire l'auto in autopilota da subito
 	
 **4-** Una volta nel client:
 
