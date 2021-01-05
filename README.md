@@ -9,8 +9,8 @@
 **Downloads:**  
 	Carla 0.9.9                     https://github.com/carla-simulator/carla/releases/tag/0.9.9  
 	Scenario Runner 0.9.9           https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.9  
-	Carla 0.9.11                    https://github.com/carla-simulator/carla/releases/tag/0.9.11
-	Scenario Runner repo  		https://github.com/carla-simulator/scenario_runner
+	Carla 0.9.11                    https://github.com/carla-simulator/carla/releases/tag/0.9.11 
+	Scenario Runner repo  		https://github.com/carla-simulator/scenario_runner 
 
 **Installation:**  
 - extract Carla release and Scenario runner (release or cloned repo)
