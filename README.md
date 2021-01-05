@@ -64,7 +64,7 @@
 **2-**  Aprire il cmd nella cartella scneraio_runner 0.9.9
 		Lanciare il seguente comando:
 		
-		python scenario_runner.py --scenario NumeScenario_numero --reloadWorld	
+		python scenario_runner.py --scenario NomeScenario_numero --reloadWorld	
 		es : python scenario_runner.py --scenario FollowLeadingVehicle_1 --reloadWorld
 					     
 	Lista scenari:
@@ -84,11 +84,13 @@
 			
  Si possono lanciare anche tutti gli scenari di una specifica classe con questo comendo
  
- 		python scenario_runner.py --scenario group:FollowLeadingVehicle
+ 		python scenario_runner.py --scenario group:NomeScenario
+		es : python scenario_runner.py --scenario group:FollowLeadingVehicle
 		
  Invece per lanciare uno scenario in formato openscenario si utilizza il seguente comando (specificando il path del file .xosc)
  		
-		python scenario_runner.py --openscenario C:\Users\studente1\Downloads\scenario_runner-master\srunner\examples\FollowLeadingVehicle_1 --reloadWorld
+		python scenario_runner.py --openscenario path_al_file_xosc
+		es : python scenario_runner.py --openscenario C:\Users\studente1\Downloads\scenario_runner-master\srunner\examples\FollowLeadingVehicle_1 --reloadWorld
 
 **3-** Dalla cartella di scenario runner avviare il client eseguendo manual_controll.py
 
