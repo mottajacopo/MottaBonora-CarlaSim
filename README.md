@@ -9,12 +9,14 @@
 **Downloads:**  
 	Carla 0.9.9                     https://github.com/carla-simulator/carla/releases/tag/0.9.9  
 	Scenario Runner 0.9.9           https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.9  
+	Carla 0.9.11                    https://github.com/carla-simulator/carla/releases/tag/0.9.11
+	Scenario Runner repo  		https://github.com/carla-simulator/scenario_runner
 
 **Installation:**  
-- extract Carla and Scenario runner 
+- extract Carla release and Scenario runner (release or cloned repo)
 - update system environment variables:
        add a variable named PYTHONPATH with the following paths changing the path according 
-       to the arrangement of your folders: 
+       to the arrangement of your folders and the version of carla: 
        
      ![PYTHONPATH](https://github.com/mottajacopo/MottaBonora-CarlaSim/blob/main/PYTHONPATH.PNG)
      
