@@ -67,8 +67,8 @@
 		python scenario_runner.py --scenario NomeScenario_numero --reloadWorld	
 		es : python scenario_runner.py --scenario FollowLeadingVehicle_1 --reloadWorld
 					     
-	Lista scenari:
-		FollowLeadingVehicle
+	Lista scenari nativi:                                   
+		FollowLeadingVehicle					
 		FollowLeadingVehicleWithObstacle
 		VehicleTurningRight
 		VehicleTurningLeft
@@ -91,6 +91,14 @@
  		
 		python scenario_runner.py --openscenario path_al_file_xosc
 		es : python scenario_runner.py --openscenario C:\Users\studente1\Downloads\scenario_runner-master\srunner\examples\FollowLeadingVehicle_1 --reloadWorld
+		
+	Lista scenari openscenario: 
+		CyclistCrossing.xosc
+		FollowLeadingVehicle.xosc
+		IntersectionCollisionAvoidance.xosc
+		LaneChangeSimple.xosc
+		PedestrianCrossingFront.xosc
+		Slalom.xosc
 
 **3-** Dalla cartella di scenario runner avviare il client eseguendo manual_controll.py
 
