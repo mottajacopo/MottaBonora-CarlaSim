@@ -20,6 +20,10 @@
        
      ![PYTHONPATH](https://github.com/mottajacopo/MottaBonora-CarlaSim/blob/main/PYTHONPATH.PNG)
      
+Nota: modificare il path della variabile di ambiente in base alla coppia (carla + scenario runner) di versioni che si vuole usare. 
+Occorre che la versione di carla in uso sia nella cartella Downloads\WindowsNoEditor quindi in caso di cambio di versione occorre rinominare 
+la cartella che si vuole utilizzare nel modo corretto facendo attenzione a rinominare prima in modo diverso quella al momento in uso.
+Di conseguenza occorre anche modificare il nome del file .EGG nella variabile di ambiente PYTHONPATH con il numero di versione corretto.
      
      
 # Carla guide
