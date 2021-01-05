@@ -62,8 +62,7 @@
 
 **1-**  Lanciare il server cliccando su CarlaUE4.exe della cartella di Carla
 
-**2-**  Aprire il cmd nella cartella scneraio_runner 0.9.9
-		Lanciare il seguente comando:
+**2-**  Aprire il cmd nella cartella scenario_runner che si vuole utilizzare e lanciare il seguente comando:
 		
 	python scenario_runner.py --scenario NomeScenario_numero --reloadWorld	
 	es : python scenario_runner.py --scenario FollowLeadingVehicle_1 --reloadWorld
