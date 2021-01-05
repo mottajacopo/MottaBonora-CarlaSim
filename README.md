@@ -85,12 +85,12 @@
 			
  Si possono lanciare anche tutti gli scenari di una specifica classe con questo comendo
  
- 	python scenario_runner.py --scenario group:NomeScenario
-	es : python scenario_runner.py --scenario group:FollowLeadingVehicle
+ 	python scenario_runner.py --scenario group:NomeScenario --reloadWorld
+	es : python scenario_runner.py --scenario group:FollowLeadingVehicle --reloadWorld
 		
  Invece per lanciare uno scenario in formato openscenario si utilizza il seguente comando (specificando il path del file .xosc)
  		
-	python scenario_runner.py --openscenario path_al_file_xosc
+	python scenario_runner.py --openscenario path_al_file_xosc --reloadWorld
 	es : python scenario_runner.py --openscenario C:\Users\studente1\Downloads\scenario_runner-master\srunner\examples\FollowLeadingVehicle_1 --reloadWorld
 		
 	Lista scenari openscenario: 
