@@ -1,0 +1,28 @@
+from yattag import Doc, indent
+import os
+import sys
+
+doc, tag, text = Doc().tagtext()
+i = [0,1,2]
+with tag('scenarios'):
+    for x in i:
+        with tag('scenario', name="FollowLeadingVehicle_1", type="FollowLeadingVehicle", town="Town01"):
+            with tag('ego_vehicle' ,x="107", y="133", z="0.5", yaw="0", model="vehicle.lincoln.mkz2017"):
+                text('')
+            with tag('weather', cloudiness="0", precipitation="0", precipitation_deposits="0", wind_intensity="0", sun_azimuth_angle="0", sun_altitude_angle="75"):
+                text('')
+
+
+
+
+result = indent(
+    doc.getvalue(),
+    indentation = ' '*4,
+    newline = '\r\n'
+)
+
+print(result)
+
+file = open("xmltest.txt", "w")
+file.write("%s" %(result))
+file.close()
