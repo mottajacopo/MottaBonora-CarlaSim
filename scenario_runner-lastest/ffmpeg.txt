@@ -1,0 +1,8 @@
+ffmpeg -i FollowLeadingVehicle.avi -ss 3 -to 13 -c copy out.avi
+
+FOR /r %i in (*.avi) DO ffmpeg -i "%~fi"
+
+FOR /r %i in (*.avi) DO ffmpeg -i "%~fi" -ss 3 -to 13 -c copy "%~piFollow.mp4"
+
+
+
