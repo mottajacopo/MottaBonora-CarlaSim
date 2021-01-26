@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OpenSccenario.xsd">
+	<FileHeader author="Mandolin" date="2021-01-21T16:14:19.273300" description="adapt_speed_example" revMajor="1" revMinor="0"/>
+	<ParameterDeclarations>
+		<ParameterDeclaration name="$HostVehicle" parameterType="string" value="car_white"/>
+		<ParameterDeclaration name="$TargetVehicle" parameterType="string" value="car_red"/>
+	</ParameterDeclarations>
+	<CatalogLocations>
+		<VehicleCatalog>
+			<Directory path="../xosc/Catalogs/Vehicles"/>
+		</VehicleCatalog>
+	</CatalogLocations>
+	<RoadNetwork>
+		<LogicFile filepath="../xodr/e6mini.xodr"/>
+		<SceneGraphFile filepath="../models/e6mini.osgb"/>
+	</RoadNetwork>
+	<Entities>
+		<ScenarioObject name="Ego">
+			<Vehicle name="car_white" vehicleCategory="car">
+				<ParameterDeclarations/>
+				<BoundingBox>
+					<Center x="2.0" y="0" z="0.9"/>
+					<Dimensions height="1.8" length="5" width="2"/>
+				</BoundingBox>
+				<Performance maxAcceleration="10" maxDeceleration="10" maxSpeed="69"/>
+				<Axles>
+					<FrontAxle maxSteering="0.523598775598" positionX="2.98" positionZ="0.4" trackWidth="1.68" wheelDiameter="0.8"/>
+					<RearAxle maxSteering="0.523598775598" positionX="0" positionZ="0.4" trackWidth="1.68" wheelDiameter="0.8"/>
+				</Axles>
+				<Properties>
+					<Property name="model_id" value="0"/>
+					<File filepath="../models/car_white.osgb"/>
+				</Properties>
+			</Vehicle>
+		</ScenarioObject>
+		<ScenarioObject name="Target">
+			<Vehicle name="car_red" vehicleCategory="car">
+				<ParameterDeclarations/>
+				<BoundingBox>
+					<Center x="1.3" y="0" z="0.8"/>
+					<Dimensions height="1.5" length="4.5" width="1.8"/>
+				</BoundingBox>
+				<Performance maxAcceleration="10" maxDeceleration="10" maxSpeed="69"/>
+				<Axles>
+					<FrontAxle maxSteering="0.523598775598" positionX="2.98" positionZ="0.4" trackWidth="1.68" wheelDiameter="0.8"/>
+					<RearAxle maxSteering="0.523598775598" positionX="0" positionZ="0.4" trackWidth="1.68" wheelDiameter="0.8"/>
+				</Axles>
+				<Properties>
+					<Property name="model_id" value="2"/>
+					<File filepath="../models/car_red.osgb"/>
+				</Properties>
+			</Vehicle>
+			<ObjectController>
+				<Controller name="mycontroler">
+					<ParameterDeclarations/>
+					<Properties>
+						<Property name="esminiController" value="SumoController"/>
+						<File filepath="../sumo_inputs/e6mini.sumocfg"/>
+					</Properties>
+				</Controller>
+			</ObjectController>
+		</ScenarioObject>
+	</Entities>
+	<Storyboard>
+		<Init>
+			<Actions>
+				<Private entityRef="Ego">
+					<PrivateAction>
+						<LongitudinalAction>
+							<SpeedAction>
+								<SpeedActionDynamics dynamicsDimension="time" dynamicsShape="step" value="1"/>
+								<SpeedActionTarget>
+									<AbsoluteTargetSpeed value="10"/>
+								</SpeedActionTarget>
+							</SpeedAction>
+						</LongitudinalAction>
+					</PrivateAction>
+					<PrivateAction>
+						<TeleportAction>
+							<Position>
+								<LanePosition laneId="-3" offset="0" roadId="0" s="25"/>
+							</Position>
+						</TeleportAction>
+					</PrivateAction>
+				</Private>
+			</Actions>
+		</Init>
+		<Story name="story_act_empty">
+			<ParameterDeclarations/>
+			<Act name="act_empty">
+				<ManeuverGroup maximumExecutionCount="1" name="empty">
+					<Actors selectTriggeringEntities="false"/>
+				</ManeuverGroup>
+				<StartTrigger/>
+				<StopTrigger/>
+			</Act>
+		</Story>
+		<StopTrigger/>
+	</Storyboard>
+</OpenSCENARIO>
