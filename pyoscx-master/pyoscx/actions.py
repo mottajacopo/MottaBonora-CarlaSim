@@ -947,8 +947,8 @@ class AssignControllerAction(_PrivateActionType):
         """ returns the elementTree of the AssignControllerAction
         """
         element = ET.Element('PrivateAction')
-        controlleraction = ET.SubElement(element,'ControllerActiton')
-        asscontrolleraction = ET.SubElement(controlleraction,'AssignControllerActiton')
+        controlleraction = ET.SubElement(element,'ControllerAction')
+        asscontrolleraction = ET.SubElement(controlleraction,'AssignControllerAction')
         asscontrolleraction.append(self.controller.get_element())
         overrideaction = ET.SubElement(controlleraction,'OverrideControllerValueAction')
         ThroAct = OverrideThrottleAction(value='0',activate=False).get_attributes()
@@ -959,8 +959,8 @@ class AssignControllerAction(_PrivateActionType):
         GearAct = OverrideGearAction(value='0',activate=False).get_attributes()
         ET.SubElement(overrideaction,'Throttle',ThroAct)
         ET.SubElement(overrideaction,'Brake',BrakAct)
-        ET.SubElement(overrideaction,'Cluth',ClutAct)
-        ET.SubElement(overrideaction,'ParkingBrack',ParkBrakAct)
+        ET.SubElement(overrideaction,'Clutch',ClutAct)
+        ET.SubElement(overrideaction,'ParkingBrake',ParkBrakAct)
         ET.SubElement(overrideaction,'SteeringWheel',SteerAct)
         ET.SubElement(overrideaction,'Gear',GearAct)
 
@@ -1230,7 +1230,7 @@ class OverrideGearAction(_PrivateActionType):
     def get_attributes(self):
         """ returns the attributes of the OverrideGearAction as a dict
         """
-        return {'value':str(self.value),'active':convert_bool(self.activate)}
+        return {'number':str(self.value),'active':convert_bool(self.activate)}
 
     def get_element(self):
         """ returns the elementTree of the OverrideGearAction

@@ -121,7 +121,7 @@ sce = pyoscx.Scenario('adapt_speed_example','Mandolin',paramdec,entities=entitie
 pyoscx.prettyprint(sce.get_element())
 
 # if you want to save it
-sce.write_xml('prova.xml',True)
+sce.write_xml('test.xosc',True)
 
 # if you have esmini downloaded and want to see the scenario (add path to esmini as second argument)
 #pyoscx.esminiRunner(sce,esminipath='/home/mander76/local/scenario_creation/esmini')

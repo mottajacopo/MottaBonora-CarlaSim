@@ -5,7 +5,7 @@ catalog = pyoscx.Catalog()
 
 
 ### create road
-road = pyoscx.RoadNetwork(roadfile='Town01',scenegraph=" ")
+road = pyoscx.RoadNetwork(roadfile='Town04',scenegraph=" ")
 
 
 ### create parameters
@@ -24,9 +24,9 @@ prop= pyoscx.Properties()
 bb = pyoscx.BoundingBox(2,5,1.8,2.0,0,0.9)
 fa = pyoscx.Axle(0.5,0.8,1.8,3.1,0.4)
 ba = pyoscx.Axle(0.5,0.8,1.8,0,0.4)
-ego_veh = pyoscx.Vehicle('vehicle.volkswagen.t2',pyoscx.VehicleCategory.car,bb,fa,ba,69,100,10)
+ego_veh = pyoscx.Vehicle('vehicle.tesla.model3',pyoscx.VehicleCategory.car,bb,fa,ba,69,100,10)
 ego_veh.add_property(name='type',value='ego_vehicle')
-ego_veh.add_property(name='color',value='255,0,0')
+ego_veh.add_property(name='color',value='255,69,0')
 bb = pyoscx.BoundingBox(1.8,4.5,1.5,1.3,0,0.8)
 fa = pyoscx.Axle(0.5,0.8,1.8,3.1,0.4)
 ba = pyoscx.Axle(0.5,0.8,1.8,0,0.4)
@@ -50,10 +50,10 @@ entities.add_scenario_object(targetname,other_veh)
 init = pyoscx.Init()
 
 #environment
-timeofday=pyoscx.TimeOfDay(True,2020,12,11,21,52,10)
+timeofday=pyoscx.TimeOfDay(True,2020,12,11,1,52,10)
 roadcond=pyoscx.RoadCondition(1.0)
 weather=pyoscx.Weather(pyoscx.CloudState.free,1,0,1,pyoscx.PrecipitationType.dry,0,100000)
-env=pyoscx.Environment("Environment1", timeofday,weather,roadcond)
+env=pyoscx.Environment("Environment1",timeofday,weather,roadcond)
 envAct= pyoscx.EnvironmentAction("Environment1", env)
 
 #controller
@@ -65,11 +65,11 @@ controllerAct = pyoscx.AssignControllerAction(contr)
 #step_time = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.time,1)
 
 #targetspeed = pyoscx.AbsoluteSpeedAction(15,step_time)
-targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,-71,0.5,1.57079632679))
+targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,0,0.5,1.6))
 #targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(190,133,0.5,0))
 
 #egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,-152.8,0.5,1.57079632679))
-egostart = pyoscx.TeleportAction(pyoscx.LanePosition(48.58,1.0,-1,4))
+egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,-41,0.5,1.6))
 #egospeed = pyoscx.AbsoluteSpeedAction(25,pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.sinusoidal,pyoscx.DynamicsDimension.time,8))
 
 
@@ -149,7 +149,7 @@ stoptrigcond2 = pyoscx.ParameterCondition('', 0, pyoscx.Rule.lessThan)
 stoptrigger2 = pyoscx.ValueTrigger('criteria_RunningRedLightTest',0,pyoscx.ConditionEdge.rising,stoptrigcond2)
 
 stoptrigcond3 = pyoscx.ParameterCondition('', 0, pyoscx.Rule.lessThan)
-stoptrigger3 = pyoscx.ValueTrigger('criteria_WrongLaneTes',0,pyoscx.ConditionEdge.rising,stoptrigcond3)
+stoptrigger3 = pyoscx.ValueTrigger('criteria_WrongLaneTest',0,pyoscx.ConditionEdge.rising,stoptrigcond3)
 
 stoptrigcond4 = pyoscx.ParameterCondition('', 0, pyoscx.Rule.lessThan)
 stoptrigger4 = pyoscx.ValueTrigger('criteria_OnSidewalkTest',0,pyoscx.ConditionEdge.rising,stoptrigcond4)

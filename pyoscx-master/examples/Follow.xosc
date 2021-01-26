@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OpenSccenario.xsd">
-	<FileHeader author="MottaBonora" date="2021-01-26T16:00:33.866339" description="CARLA:FollowLeadingVehicle" revMajor="1" revMinor="0"/>
+	<FileHeader author="MottaBonora" date="2021-01-26T15:18:34.431401" description="CARLA:FollowLeadingVehicle" revMajor="1" revMinor="0"/>
 	<ParameterDeclarations>
 		<ParameterDeclaration name="leadingSpeed" parameterType="double" value="2.0"/>
 	</ParameterDeclarations>
@@ -11,7 +11,7 @@
 	</RoadNetwork>
 	<Entities>
 		<ScenarioObject name="hero">
-			<Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+			<Vehicle name="vehicle.volkswagen.t2" vehicleCategory="car">
 				<ParameterDeclarations/>
 				<BoundingBox>
 					<Center x="2.0" y="0" z="0.9"/>
@@ -24,7 +24,7 @@
 				</Axles>
 				<Properties>
 					<Property name="type" value="ego_vehicle"/>
-					<Property name="color" value="255,69,0"/>
+					<Property name="color" value="255,0,0"/>
 				</Properties>
 			</Vehicle>
 		</ScenarioObject>
@@ -52,8 +52,8 @@
 			<Actions>
 				<GlobalAction>
 					<EnvironmentAction>
-						<Environment name="Environment1">
-							<TimeOfDay animation="true" dateTime="2020-12-11T01:52:10"/>
+						<Environment>
+							<TimeOfDay animation="True" dateTime="2020-12-11T11:52:10"/>
 							<Weather cloudState="free">
 								<Sun azimuth="0" elevation="1" intensity="1"/>
 								<Fog visualRange="100000"/>
@@ -67,36 +67,26 @@
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="1.6" x="-9.4" y="-41" z="0.5"/>
+								<WorldPosition h="4.7" x="-9.4" y="-81" z="0.5"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
 					<PrivateAction>
-						<ControllerAction>
-							<AssignControllerAction>
-								<Controller name="HeroAgent">
-									<ParameterDeclarations/>
-									<Properties>
-										<Property name="module" value="external_control"/>
-									</Properties>
-								</Controller>
-							</AssignControllerAction>
-							<OverrideControllerValueAction>
-								<Throttle active="false" value="0"/>
-								<Brake active="false" value="0"/>
-								<Clutch active="false" value="0"/>
-								<ParkingBrake active="false" value="0"/>
-								<SteeringWheel active="false" value="0"/>
-								<Gear active="false" number="0"/>
-							</OverrideControllerValueAction>
-						</ControllerAction>
+						<ControllerActiton>
+							<Controller name="HeroAgent">
+								<ParameterDeclarations/>
+								<Properties>
+									<Property name="module" value="external_control"/>
+								</Properties>
+							</Controller>
+						</ControllerActiton>
 					</PrivateAction>
 				</Private>
 				<Private entityRef="adversary">
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="1.6" x="-9.4" y="0" z="0.5"/>
+								<WorldPosition h="4.7" x="-9.4" y="-71" z="0.5"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
@@ -132,7 +122,7 @@
 												<EntityRef entityRef="hero"/>
 											</TriggeringEntities>
 											<EntityCondition>
-												<RelativeDistanceCondition entityRef="adversary" freespace="false" relativeDistanceType="cartesianDistance" rule="lessThan" value="40"/>
+												<RelativeDistanceCondition alongRoute="true" entityRef="adversary" freespace="false" relativeDistanceType="cartesianDistance" rule="lessThan" value="40"/>
 											</EntityCondition>
 										</ByEntityCondition>
 									</Condition>
@@ -211,7 +201,7 @@
 						<ParameterCondition parameterRef="" rule="lessThan" value="0"/>
 					</ByValueCondition>
 				</Condition>
-				<Condition conditionEdge="rising" delay="0" name="criteria_WrongLaneTest">
+				<Condition conditionEdge="rising" delay="0" name="criteria_WrongLaneTes">
 					<ByValueCondition>
 						<ParameterCondition parameterRef="" rule="lessThan" value="0"/>
 					</ByValueCondition>

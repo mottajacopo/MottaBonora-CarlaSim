@@ -4,12 +4,12 @@
 	<ParameterDeclarations/>
 	<CatalogLocations/>
 	<RoadNetwork>
-		<LogicFile filepath="Town01"/>
+		<LogicFile filepath="Town04"/>
 		<SceneGraphFile filepath=" "/>
 	</RoadNetwork>
 	<Entities>
 		<ScenarioObject name="hero">
-			<Vehicle name="vehicle.volkswagen.t2" vehicleCategory="car">
+			<Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
 				<ParameterDeclarations/>
 				<BoundingBox>
 					<Center x="2.0" y="0" z="0.9"/>
@@ -22,6 +22,7 @@
 				</Axles>
 				<Properties>
 					<Property name="type" value="ego_vehicle"/>
+					<Property name="color" value="255,69,0"/>
 				</Properties>
 			</Vehicle>
 		</ScenarioObject>
@@ -48,8 +49,8 @@
 			<Actions>
 				<GlobalAction>
 					<EnvironmentAction>
-						<Environment>
-							<TimeOfDay animation="True" dateTime="2020-12-11T21:52:10"/>
+						<Environment name="Environment1">
+							<TimeOfDay animation="true" dateTime="2020-12-11T13:52:10"/>
 							<Weather cloudState="free">
 								<Sun azimuth="0" elevation="1" intensity="1"/>
 								<Fog visualRange="100000"/>
@@ -65,45 +66,6 @@
 							<SpeedAction>
 								<SpeedActionDynamics dynamicsDimension="time" dynamicsShape="sinusoidal" value="8"/>
 								<SpeedActionTarget>
-									<AbsoluteTargetSpeed value="25"/>
-								</SpeedActionTarget>
-							</SpeedAction>
-						</LongitudinalAction>
-					</PrivateAction>
-					<PrivateAction>
-						<TeleportAction>
-							<Position>
-								<WorldPosition h="1.57079632679" x="-9.4" y="-152.8" z="0.5"/>
-							</Position>
-						</TeleportAction>
-					</PrivateAction>
-					<PrivateAction>
-						<ControllerActiton>
-							<AssignControllerActiton>
-								<Controller name="HeroAgent">
-									<ParameterDeclarations/>
-									<Properties>
-										<Property name="module" value="external_control"/>
-									</Properties>
-								</Controller>
-							</AssignControllerActiton>
-							<OverrideControllerValueAction>
-								<Throttle active="false" value="0"/>
-								<Brake active="false" value="0"/>
-								<Cluth active="false" value="0"/>
-								<ParkingBrack active="false" value="0"/>
-								<SteeringWheel active="false" value="0"/>
-								<Gear active="false" value="0"/>
-							</OverrideControllerValueAction>
-						</ControllerActiton>
-					</PrivateAction>
-				</Private>
-				<Private entityRef="adversary">
-					<PrivateAction>
-						<LongitudinalAction>
-							<SpeedAction>
-								<SpeedActionDynamics dynamicsDimension="time" dynamicsShape="step" value="1"/>
-								<SpeedActionTarget>
 									<AbsoluteTargetSpeed value="15"/>
 								</SpeedActionTarget>
 							</SpeedAction>
@@ -112,7 +74,46 @@
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="1.57079632679" x="-9.4" y="-71" z="0.5"/>
+								<WorldPosition h="-1.6" x="-9.4" y="-100" z="0.5"/>
+							</Position>
+						</TeleportAction>
+					</PrivateAction>
+					<PrivateAction>
+						<ControllerAction>
+							<AssignControllerAction>
+								<Controller name="HeroAgent">
+									<ParameterDeclarations/>
+									<Properties>
+										<Property name="module" value="external_control"/>
+									</Properties>
+								</Controller>
+							</AssignControllerAction>
+							<OverrideControllerValueAction>
+								<Throttle active="false" value="0"/>
+								<Brake active="false" value="0"/>
+								<Clutch active="false" value="0"/>
+								<ParkingBrake active="false" value="0"/>
+								<SteeringWheel active="false" value="0"/>
+								<Gear active="false" number="0"/>
+							</OverrideControllerValueAction>
+						</ControllerAction>
+					</PrivateAction>
+				</Private>
+				<Private entityRef="adversary">
+					<PrivateAction>
+						<LongitudinalAction>
+							<SpeedAction>
+								<SpeedActionDynamics dynamicsDimension="time" dynamicsShape="step" value="10"/>
+								<SpeedActionTarget>
+									<AbsoluteTargetSpeed value="10"/>
+								</SpeedActionTarget>
+							</SpeedAction>
+						</LongitudinalAction>
+					</PrivateAction>
+					<PrivateAction>
+						<TeleportAction>
+							<Position>
+								<WorldPosition h="4.7" x="-9.4" y="-110" z="0.5"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
@@ -136,7 +137,7 @@
 										<SpeedAction>
 											<SpeedActionDynamics dynamicsDimension="time" dynamicsShape="linear" value="5"/>
 											<SpeedActionTarget>
-												<AbsoluteTargetSpeed value="30"/>
+												<AbsoluteTargetSpeed value="10"/>
 											</SpeedActionTarget>
 										</SpeedAction>
 									</LongitudinalAction>

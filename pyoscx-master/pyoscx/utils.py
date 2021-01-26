@@ -1874,8 +1874,12 @@ class TimeOfDay():
         """ returns the attributes of the TimeOfDay as a dict
 
         """
+        
         dt = str(self.year) + '-' + '{:0>2}'.format(self.month) + '-' + '{:0>2}'.format(self.day) + 'T' + '{:0>2}'.format(self.hour) + ':' + '{:0>2}'.format(self.minute) + ':' +'{:0>2}'.format(self.second)
-        return {'animation':str(self.animation),'dateTime':dt}
+        if (self.animation):
+            return {'animation':"true",'dateTime':dt}
+        
+        return {'animation':"false",'dateTime':dt}
 
     def get_element(self):
         """ returns the elementTree of the TimeOfDay
