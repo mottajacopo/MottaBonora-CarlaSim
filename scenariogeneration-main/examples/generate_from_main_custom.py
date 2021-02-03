@@ -37,16 +37,16 @@ def get_random_spawn_points(offset):
 
 
     ego_x = random_spawn.location.x
-    ego_y = random_spawn.location.y
+    ego_y = random_spawn.location.y *(-1)
     ego_z = random_spawn.location.z
-    ego_h = math.radians(random_spawn.rotation.yaw)
+    ego_h = math.radians(random_spawn.rotation.yaw) *(-1)
 
     egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(ego_x, ego_y, ego_z, ego_h))
 
     other_x = waypoint.transform.location.x
-    other_y = waypoint.transform.location.y
+    other_y = waypoint.transform.location.y *(-1)
     other_z = waypoint.transform.location.z
-    other_h = math.radians(waypoint.transform.rotation.yaw)
+    other_h = math.radians(waypoint.transform.rotation.yaw) *(-1)
 
     targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(other_x, other_y, other_z, other_h))
 
@@ -65,7 +65,7 @@ class Scenario(ScenarioGenerator):
         catalog = pyoscx.Catalog()
 
         ### create road
-        road = pyoscx.RoadNetwork(roadfile='Town04',scenegraph=" ")
+        road = pyoscx.RoadNetwork(roadfile='Town06',scenegraph=" ")
 
 
         ### create parameters
@@ -74,7 +74,7 @@ class Scenario(ScenarioGenerator):
 
         ###create properties
 
-        prop= pyoscx.Properties()
+        #prop= pyoscx.Properties()
         #prop.add_property
 
 
@@ -136,13 +136,15 @@ class Scenario(ScenarioGenerator):
         #step_time = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.time,1)
 
         #targetspeed = pyoscx.AbsoluteSpeedAction(15,step_time)
-        #targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,-80,0.5,4.7))
+        targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,-80,0.5,4.7))
         #targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(190,133,0.5,0))
 
         #egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,-152.8,0.5,1.57079632679))
-        #egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,80,0.5,4.7))
+        egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,80,0.5,4.7))
         egospeed = pyoscx.AbsoluteSpeedAction(kwargs['approachSpeed'],pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.distance,10))
-        egostart, targetstart = get_random_spawn_points(kwargs['initialOffset'])
+        
+        if(kwargs['randomPosition']):
+            egostart, targetstart = get_random_spawn_points(kwargs['initialOffset'])
 
 
         init.add_global_action(envAct)
@@ -196,23 +198,11 @@ class Scenario(ScenarioGenerator):
 
 if __name__ == "__main__":
     s = Scenario()
-    
+ 
     parameters = {}
-    parameters['approachSpeed'] = [15, 30]
-    parameters['initialOffset'] = [50, 100]
-
-    spawns = []
-    f = open('C:\\TesiMagistrale\\pyoscx-master\\Town04.json')
-    data = json.load(f)
-
-    for pos in data['Town04']:
-                    x = float(pos['x'])
-                    y = float(pos['y'])
-                    z = float(pos['z'])
-                    h = math.radians(int(round((pos['h']/10)))*10)
-                    spawns.append(pyoscx.TeleportAction(pyoscx.WorldPosition(x, y, z, h)))
-    parameters['positions'] = [spawns]
-
+    parameters['approachSpeed'] = [10, 20, 30]
+    parameters['initialOffset'] = [100, 150]
+    parameters['randomPosition'] = [True]
 
     s.print_permutations(parameters)
 
