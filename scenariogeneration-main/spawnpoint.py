@@ -44,7 +44,11 @@ other_h = math.radians(waypoint.transform.rotation.yaw)
 
 targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(other_x, other_y, other_z, other_h))
 
-i = 0
+
+for waypoints in current_map.get_spawn_points():
+    world.debug.draw_string(waypoint.transform.location, 'o', draw_shadow=False,color=carla.Color(r=255, g=255, b=255), life_time=0.2,persistent_lines=True)
+											 
+											 
 
 
 

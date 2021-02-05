@@ -200,9 +200,19 @@ if __name__ == "__main__":
     s = Scenario()
  
     parameters = {}
-    parameters['approachSpeed'] = [10, 20, 30]
-    parameters['initialOffset'] = [100, 150]
-    parameters['randomPosition'] = [True]
+    #parameters['approachSpeed2'] = [10, 20, 30]
+    #parameters['initialOffset2'] = [100, 150]
+    #parameters['randomPosition2'] = [True]
+
+    # JSON file 
+    f = open ('param.json', "r") 
+  
+    # Reading from file 
+    data = json.loads(f.read()) 
+  
+    for jsonParam in data['Parameters']: 
+        for value in jsonParam:
+            parameters[value] = jsonParam[value]
 
     s.print_permutations(parameters)
 
