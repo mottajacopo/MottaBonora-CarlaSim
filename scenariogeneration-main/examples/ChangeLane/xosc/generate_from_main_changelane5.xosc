@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OpenSccenario.xsd">
-	<FileHeader author="Bonora_Motta" date="2021-02-09T10:42:22.123273" description="change_lane" revMajor="1" revMinor="0"/>
+	<FileHeader author="Bonora_Motta" date="2021-02-05T17:13:39.757397" description="change_lane" revMajor="1" revMinor="0"/>
 	<ParameterDeclarations/>
 	<CatalogLocations/>
 	<RoadNetwork>
@@ -66,7 +66,7 @@
 							<SpeedAction>
 								<SpeedActionDynamics dynamicsDimension="distance" dynamicsShape="step" value="10"/>
 								<SpeedActionTarget>
-									<AbsoluteTargetSpeed value="15"/>
+									<AbsoluteTargetSpeed value="30"/>
 								</SpeedActionTarget>
 							</SpeedAction>
 						</LongitudinalAction>
@@ -80,16 +80,6 @@
 					</PrivateAction>
 				</Private>
 				<Private entityRef="adversary">
-					<PrivateAction>
-						<LongitudinalAction>
-							<SpeedAction>
-								<SpeedActionDynamics dynamicsDimension="time" dynamicsShape="step" value="1"/>
-								<SpeedActionTarget>
-									<AbsoluteTargetSpeed value="5"/>
-								</SpeedActionTarget>
-							</SpeedAction>
-						</LongitudinalAction>
-					</PrivateAction>
 					<PrivateAction>
 						<TeleportAction>
 							<Position>

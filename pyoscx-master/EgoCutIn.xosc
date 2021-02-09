@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OpenSccenario.xsd">
-	<FileHeader author="Bonora_Motta" date="2021-02-09T10:42:22.123273" description="change_lane" revMajor="1" revMinor="0"/>
+	<FileHeader author="Bonora_Motta" date="2021-02-09T10:23:50.351455" description="ego_cut_in" revMajor="1" revMinor="0"/>
 	<ParameterDeclarations/>
 	<CatalogLocations/>
 	<RoadNetwork>
@@ -74,22 +74,12 @@
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="4.7" x="-8.6" y="80" z="0.5"/>
+								<WorldPosition h="4.7" x="-2.6" y="80" z="0.5"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
 				</Private>
 				<Private entityRef="adversary">
-					<PrivateAction>
-						<LongitudinalAction>
-							<SpeedAction>
-								<SpeedActionDynamics dynamicsDimension="time" dynamicsShape="step" value="1"/>
-								<SpeedActionTarget>
-									<AbsoluteTargetSpeed value="5"/>
-								</SpeedActionTarget>
-							</SpeedAction>
-						</LongitudinalAction>
-					</PrivateAction>
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
@@ -115,7 +105,7 @@
 										<LaneChangeAction>
 											<LaneChangeActionDynamics dynamicsDimension="distance" dynamicsShape="linear" value="25"/>
 											<LaneChangeTarget>
-												<RelativeTargetLane entityRef="adversary" value="-1"/>
+												<RelativeTargetLane entityRef="adversary" value="2"/>
 											</LaneChangeTarget>
 										</LaneChangeAction>
 									</LateralAction>
@@ -129,7 +119,7 @@
 												<EntityRef entityRef="hero"/>
 											</TriggeringEntities>
 											<EntityCondition>
-												<RelativeDistanceCondition entityRef="adversary" freespace="false" relativeDistanceType="cartesianDistance" rule="lessThan" value="40"/>
+												<RelativeDistanceCondition entityRef="adversary" freespace="false" relativeDistanceType="cartesianDistance" rule="lessThan" value="8"/>
 											</EntityCondition>
 										</ByEntityCondition>
 									</Condition>

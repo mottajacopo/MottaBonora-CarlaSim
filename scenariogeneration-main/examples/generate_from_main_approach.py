@@ -157,12 +157,12 @@ class Scenario(ScenarioGenerator):
 
         ### create an event
 
-        trigcond = pyoscx.RelativeDistanceCondition(50,pyoscx.Rule.lessThan, pyoscx.RelativeDistanceType.cartesianDistance,targetname,freespace=False)
+        trigcond = pyoscx.RelativeDistanceCondition((20+kwargs['approachSpeed']),pyoscx.Rule.lessThan, pyoscx.RelativeDistanceType.cartesianDistance,targetname,freespace=False)
 
 
         trigger = pyoscx.EntityTrigger('distancetrigger',0.0,pyoscx.ConditionEdge.none,trigcond,egoname)
 
-        event = pyoscx.Event('HeroSotps',pyoscx.Priority.overwrite)
+        event = pyoscx.Event('HeroStops',pyoscx.Priority.overwrite)
         event.add_trigger(trigger)
         linear = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.linear,pyoscx.DynamicsDimension.distance,30)
         action1 = pyoscx.AbsoluteSpeedAction('$leadingSpeed',linear)
@@ -205,7 +205,7 @@ if __name__ == "__main__":
     #parameters['randomPosition2'] = [True]
 
     # JSON file 
-    f = open ('param.json', "r") 
+    f = open ('param_approach.json', "r") 
   
     # Reading from file 
     data = json.loads(f.read()) 
@@ -216,6 +216,6 @@ if __name__ == "__main__":
 
     s.print_permutations(parameters)
 
-    s.generate('my_scenarios',parameters)
+    s.generate('ApproachingStaticObject',parameters)
 
 

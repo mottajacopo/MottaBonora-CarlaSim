@@ -16,7 +16,7 @@ import carla
 def get_random_spawn_points(offset):
 
     client = carla.Client('localhost', 2000)
-    client.set_timeout(2.0)
+    client.set_timeout(5.0)
     world = client.get_world()
     current_map = world.get_map()
 
@@ -61,20 +61,22 @@ class Scenario(ScenarioGenerator):
 
     def scenario(self,**kwargs):
         
+     
+
         ### create catalogs
         catalog = pyoscx.Catalog()
 
+
         ### create road
-        road = pyoscx.RoadNetwork(roadfile='Town06',scenegraph=" ")
+        road = pyoscx.RoadNetwork(roadfile='Town04',scenegraph=" ")
 
 
         ### create parameters
         paramdec = pyoscx.ParameterDeclarations()
-        paramdec.add_parameter(pyoscx.Parameter('leadingSpeed',pyoscx.ParameterType.double,'0.0'))
 
         ###create properties
 
-        #prop= pyoscx.Properties()
+        prop= pyoscx.Properties()
         #prop.add_property
 
 
@@ -142,10 +144,9 @@ class Scenario(ScenarioGenerator):
         #egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,-152.8,0.5,1.57079632679))
         egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,80,0.5,4.7))
         egospeed = pyoscx.AbsoluteSpeedAction(kwargs['approachSpeed'],pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.distance,10))
-        
-        if(kwargs['randomPosition']):
-            egostart, targetstart = get_random_spawn_points(kwargs['initialOffset'])
 
+        if(kwargs['randomPosition']):
+           egostart, targetstart = get_random_spawn_points(kwargs['initialOffset'])
 
         init.add_global_action(envAct)
         init.add_init_action(egoname,egospeed)
@@ -155,18 +156,19 @@ class Scenario(ScenarioGenerator):
         init.add_init_action(targetname,targetstart)
 
 
+
         ### create an event
 
-        trigcond = pyoscx.RelativeDistanceCondition(50,pyoscx.Rule.lessThan, pyoscx.RelativeDistanceType.cartesianDistance,targetname,freespace=False)
+        trigcond = pyoscx.RelativeDistanceCondition(40,pyoscx.Rule.lessThan, pyoscx.RelativeDistanceType.cartesianDistance,targetname,freespace=False)
 
 
         trigger = pyoscx.EntityTrigger('distancetrigger',0.0,pyoscx.ConditionEdge.none,trigcond,egoname)
 
-        event = pyoscx.Event('HeroSotps',pyoscx.Priority.overwrite)
+        event = pyoscx.Event('HeroChangesLane',pyoscx.Priority.overwrite)
         event.add_trigger(trigger)
-        linear = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.linear,pyoscx.DynamicsDimension.distance,30)
-        action1 = pyoscx.AbsoluteSpeedAction('$leadingSpeed',linear)
-        event.add_action('HeroStops',action1)
+        sin_time = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.linear,pyoscx.DynamicsDimension.distance,25)
+        action = pyoscx.RelativeLaneChangeAction(-1,targetname,sin_time)
+        event.add_action('HeroChangesLane',action)
 
 
         ## create the maneuver 
@@ -192,7 +194,8 @@ class Scenario(ScenarioGenerator):
         sb.add_story(story)
 
         ## create the scenario
-        sce = pyoscx.Scenario('approaching_static_object','Bonora_Motta',paramdec,entities=entities,storyboard = sb,roadnetwork=road,catalog=catalog)
+        sce = pyoscx.Scenario('change_lane','Bonora_Motta',paramdec,entities=entities,storyboard = sb,roadnetwork=road,catalog=catalog)
+
 
         return sce
 
@@ -205,7 +208,7 @@ if __name__ == "__main__":
     #parameters['randomPosition2'] = [True]
 
     # JSON file 
-    f = open ('param.json', "r") 
+    f = open ('param_changelane.json', "r") 
   
     # Reading from file 
     data = json.loads(f.read()) 
@@ -216,6 +219,6 @@ if __name__ == "__main__":
 
     s.print_permutations(parameters)
 
-    s.generate('my_scenarios',parameters)
+    s.generate('ChangeLane',parameters)
 
 

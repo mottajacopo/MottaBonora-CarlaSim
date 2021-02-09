@@ -72,14 +72,14 @@ envAct= pyoscx.EnvironmentAction("Environment1", env)
 # contr = pyoscx.Controller('HeroAgent',prop)
 # controllerAct = pyoscx.AssignControllerAction(contr)
 
-step_time = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.time,1)
+#step_time = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.time,1)
 
-targetspeed = pyoscx.AbsoluteSpeedAction(5,step_time)
+#targetspeed = pyoscx.AbsoluteSpeedAction(15,step_time)
 targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,-80,0.5,4.7))
-
+#targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(190,133,0.5,0))
 
 #egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,-152.8,0.5,1.57079632679))
-egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,80,0.5,4.7))
+egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-2.6,80,0.5,4.7))
 egospeed = pyoscx.AbsoluteSpeedAction(15,pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.distance,10))
 
 
@@ -87,14 +87,14 @@ init.add_global_action(envAct)
 init.add_init_action(egoname,egospeed)
 init.add_init_action(egoname,egostart)
 #init.add_init_action(egoname,controllerAct)
-init.add_init_action(targetname,targetspeed)
+#init.add_init_action(targetname,targetspeed)
 init.add_init_action(targetname,targetstart)
 
 
 
 ### create an event
 
-trigcond = pyoscx.RelativeDistanceCondition(40,pyoscx.Rule.lessThan, pyoscx.RelativeDistanceType.cartesianDistance,targetname,freespace=False)
+trigcond = pyoscx.RelativeDistanceCondition(8,pyoscx.Rule.lessThan, pyoscx.RelativeDistanceType.cartesianDistance,targetname,freespace=False)
 
 
 trigger = pyoscx.EntityTrigger('distancetrigger',0.0,pyoscx.ConditionEdge.none,trigcond,egoname)
@@ -102,7 +102,7 @@ trigger = pyoscx.EntityTrigger('distancetrigger',0.0,pyoscx.ConditionEdge.none,t
 event = pyoscx.Event('HeroChangesLane',pyoscx.Priority.overwrite)
 event.add_trigger(trigger)
 sin_time = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.linear,pyoscx.DynamicsDimension.distance,25)
-action = pyoscx.RelativeLaneChangeAction(-1,targetname,sin_time)
+action = pyoscx.RelativeLaneChangeAction(2,targetname,sin_time)
 event.add_action('HeroChangesLane',action)
 
 
@@ -113,8 +113,6 @@ man.add_event(event)
 mangr = pyoscx.ManeuverGroup('mangroup')
 mangr.add_actor('hero')
 mangr.add_maneuver(man)
-
-
 starttrigger = pyoscx.ValueTrigger('starttrigger',0,pyoscx.ConditionEdge.rising,pyoscx.SimulationTimeCondition(0,pyoscx.Rule.greaterThan))
 act = pyoscx.Act('my_act',starttrigger)
 act.add_maneuver_group(mangr)
@@ -131,13 +129,13 @@ sb = pyoscx.StoryBoard(init,pyoscx.ValueTrigger('stop_simulation',0,pyoscx.Condi
 sb.add_story(story)
 
 ## create the scenario
-sce = pyoscx.Scenario('change_lane','Bonora_Motta',paramdec,entities=entities,storyboard = sb,roadnetwork=road,catalog=catalog)
+sce = pyoscx.Scenario('ego_cut_in','Bonora_Motta',paramdec,entities=entities,storyboard = sb,roadnetwork=road,catalog=catalog)
 
 # display the scenario
 pyoscx.prettyprint(sce.get_element())
 
 # if you want to save it
-sce.write_xml('ChangeLane.xosc',True)
+sce.write_xml('EgoCutIn.xosc',True)
 
 # if you have esmini downloaded and want to see the scenario (add path to esmini as second argument)
 #pyoscx.esminiRunner(sce,esminipath='/home/mander76/local/scenario_creation/esmini')

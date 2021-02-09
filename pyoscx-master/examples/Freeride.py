@@ -11,6 +11,7 @@ road = pyoscx.RoadNetwork(roadfile='Town04',scenegraph=" ")
 ### create parameters
 paramdec = pyoscx.ParameterDeclarations()
 
+
 ###create properties
 
 prop= pyoscx.Properties()
@@ -34,13 +35,13 @@ other_veh.add_property(name='type',value='simulation')
 ## create entities
 
 egoname = 'hero'
-targetname = 'adversary'
+
 
 entities = pyoscx.Entities()
 
 entities.add_scenario_object(egoname,ego_veh)
 
-entities.add_scenario_object(targetname,other_veh)
+
 
 
 timeofday=pyoscx.TimeOfDay(True,2020,12,11,21,52,10)
@@ -51,9 +52,9 @@ env=pyoscx.Environment("Environment1", timeofday,weather,roadcond)
 # egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,-152.8,0.5,1.57079632679))
 
 
-# prop= pyoscx.Properties()
-# prop.add_property(name='module',value='external_control')
-# contr = pyoscx.Controller('HeroAgent',prop)
+prop= pyoscx.Properties()
+prop.add_property(name='module',value='external_control')
+contr = pyoscx.Controller('HeroAgent',prop)
 
 
 ### create init
@@ -67,43 +68,36 @@ env=pyoscx.Environment("Environment1",timeofday,weather,roadcond)
 envAct= pyoscx.EnvironmentAction("Environment1", env)
 
 #controller
-# prop= pyoscx.Properties()
-# prop.add_property(name='module',value='external_control')
-# contr = pyoscx.Controller('HeroAgent',prop)
-# controllerAct = pyoscx.AssignControllerAction(contr)
+prop= pyoscx.Properties()
+prop.add_property(name='module',value='external_control')
+contr = pyoscx.Controller('HeroAgent',prop)
+controllerAct = pyoscx.AssignControllerAction(contr)
 
-step_time = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.time,1)
-
-targetspeed = pyoscx.AbsoluteSpeedAction(5,step_time)
-targetstart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,-80,0.5,4.7))
-
-
-#egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,-152.8,0.5,1.57079632679))
 egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,80,0.5,4.7))
-egospeed = pyoscx.AbsoluteSpeedAction(15,pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.distance,10))
+
 
 
 init.add_global_action(envAct)
-init.add_init_action(egoname,egospeed)
+
 init.add_init_action(egoname,egostart)
-#init.add_init_action(egoname,controllerAct)
-init.add_init_action(targetname,targetspeed)
-init.add_init_action(targetname,targetstart)
+init.add_init_action(egoname,controllerAct)
+
 
 
 
 ### create an event
 
-trigcond = pyoscx.RelativeDistanceCondition(40,pyoscx.Rule.lessThan, pyoscx.RelativeDistanceType.cartesianDistance,targetname,freespace=False)
+starttrigger = pyoscx.ValueTrigger('starttrigger',0,pyoscx.ConditionEdge.rising,pyoscx.SimulationTimeCondition(0,pyoscx.Rule.greaterThan))
 
 
-trigger = pyoscx.EntityTrigger('distancetrigger',0.0,pyoscx.ConditionEdge.none,trigcond,egoname)
+#trigger = pyoscx.EntityTrigger('distancetrigger',0.0,pyoscx.ConditionEdge.none,starttrigger,egoname)
 
-event = pyoscx.Event('HeroChangesLane',pyoscx.Priority.overwrite)
-event.add_trigger(trigger)
-sin_time = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.linear,pyoscx.DynamicsDimension.distance,25)
-action = pyoscx.RelativeLaneChangeAction(-1,targetname,sin_time)
-event.add_action('HeroChangesLane',action)
+event = pyoscx.Event('StartEvent',pyoscx.Priority.overwrite)
+event.add_trigger(starttrigger)
+#sin_time = pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.linear,pyoscx.DynamicsDimension.distance,25)
+action = pyoscx.ActivateControllerAction(False,True)
+event.add_action('StartEvent',action)
+
 
 
 ## create the maneuver 
@@ -113,9 +107,7 @@ man.add_event(event)
 mangr = pyoscx.ManeuverGroup('mangroup')
 mangr.add_actor('hero')
 mangr.add_maneuver(man)
-
-
-starttrigger = pyoscx.ValueTrigger('starttrigger',0,pyoscx.ConditionEdge.rising,pyoscx.SimulationTimeCondition(0,pyoscx.Rule.greaterThan))
+starttrigger = pyoscx.ValueTrigger('starttrigger',50,pyoscx.ConditionEdge.rising,pyoscx.SimulationTimeCondition(0,pyoscx.Rule.greaterThan))
 act = pyoscx.Act('my_act',starttrigger)
 act.add_maneuver_group(mangr)
 
@@ -131,13 +123,13 @@ sb = pyoscx.StoryBoard(init,pyoscx.ValueTrigger('stop_simulation',0,pyoscx.Condi
 sb.add_story(story)
 
 ## create the scenario
-sce = pyoscx.Scenario('change_lane','Bonora_Motta',paramdec,entities=entities,storyboard = sb,roadnetwork=road,catalog=catalog)
+sce = pyoscx.Scenario('freeride','Bonora_Motta',paramdec,entities=entities,storyboard = sb,roadnetwork=road,catalog=catalog)
 
 # display the scenario
 pyoscx.prettyprint(sce.get_element())
 
 # if you want to save it
-sce.write_xml('ChangeLane.xosc',True)
+sce.write_xml('Freeride.xosc',True)
 
 # if you have esmini downloaded and want to see the scenario (add path to esmini as second argument)
 #pyoscx.esminiRunner(sce,esminipath='/home/mander76/local/scenario_creation/esmini')

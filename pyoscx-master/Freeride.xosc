@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OpenSccenario.xsd">
-	<FileHeader author="Bonora_Motta" date="2021-02-09T10:42:22.123273" description="change_lane" revMajor="1" revMinor="0"/>
+	<FileHeader author="Bonora_Motta" date="2021-02-09T11:14:55.748586" description="freeride" revMajor="1" revMinor="0"/>
 	<ParameterDeclarations/>
 	<CatalogLocations/>
 	<RoadNetwork>
@@ -26,23 +26,6 @@
 				</Properties>
 			</Vehicle>
 		</ScenarioObject>
-		<ScenarioObject name="adversary">
-			<Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
-				<ParameterDeclarations/>
-				<BoundingBox>
-					<Center x="1.3" y="0" z="0.8"/>
-					<Dimensions height="1.5" length="4.5" width="1.8"/>
-				</BoundingBox>
-				<Performance maxAcceleration="10" maxDeceleration="10" maxSpeed="69"/>
-				<Axles>
-					<FrontAxle maxSteering="0.523598775598" positionX="2.98" positionZ="0.4" trackWidth="1.68" wheelDiameter="0.8"/>
-					<RearAxle maxSteering="0.523598775598" positionX="0" positionZ="0.4" trackWidth="1.68" wheelDiameter="0.8"/>
-				</Axles>
-				<Properties>
-					<Property name="type" value="simulation"/>
-				</Properties>
-			</Vehicle>
-		</ScenarioObject>
 	</Entities>
 	<Storyboard>
 		<Init>
@@ -62,40 +45,31 @@
 				</GlobalAction>
 				<Private entityRef="hero">
 					<PrivateAction>
-						<LongitudinalAction>
-							<SpeedAction>
-								<SpeedActionDynamics dynamicsDimension="distance" dynamicsShape="step" value="10"/>
-								<SpeedActionTarget>
-									<AbsoluteTargetSpeed value="15"/>
-								</SpeedActionTarget>
-							</SpeedAction>
-						</LongitudinalAction>
-					</PrivateAction>
-					<PrivateAction>
 						<TeleportAction>
 							<Position>
 								<WorldPosition h="4.7" x="-8.6" y="80" z="0.5"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
-				</Private>
-				<Private entityRef="adversary">
 					<PrivateAction>
-						<LongitudinalAction>
-							<SpeedAction>
-								<SpeedActionDynamics dynamicsDimension="time" dynamicsShape="step" value="1"/>
-								<SpeedActionTarget>
-									<AbsoluteTargetSpeed value="5"/>
-								</SpeedActionTarget>
-							</SpeedAction>
-						</LongitudinalAction>
-					</PrivateAction>
-					<PrivateAction>
-						<TeleportAction>
-							<Position>
-								<WorldPosition h="4.7" x="-8.6" y="-80" z="0.5"/>
-							</Position>
-						</TeleportAction>
+						<ControllerAction>
+							<AssignControllerAction>
+								<Controller name="HeroAgent">
+									<ParameterDeclarations/>
+									<Properties>
+										<Property name="module" value="external_control"/>
+									</Properties>
+								</Controller>
+							</AssignControllerAction>
+							<OverrideControllerValueAction>
+								<Throttle active="false" value="0"/>
+								<Brake active="false" value="0"/>
+								<Clutch active="false" value="0"/>
+								<ParkingBrake active="false" value="0"/>
+								<SteeringWheel active="false" value="0"/>
+								<Gear active="false" number="0"/>
+							</OverrideControllerValueAction>
+						</ControllerAction>
 					</PrivateAction>
 				</Private>
 			</Actions>
@@ -108,30 +82,18 @@
 						<EntityRef entityRef="hero"/>
 					</Actors>
 					<Maneuver name="my_maneuver">
-						<Event maximumExecutionCount="1" name="HeroChangesLane" priority="overwrite">
-							<Action name="HeroChangesLane">
+						<Event maximumExecutionCount="1" name="StartEvent" priority="overwrite">
+							<Action name="StartEvent">
 								<PrivateAction>
-									<LateralAction>
-										<LaneChangeAction>
-											<LaneChangeActionDynamics dynamicsDimension="distance" dynamicsShape="linear" value="25"/>
-											<LaneChangeTarget>
-												<RelativeTargetLane entityRef="adversary" value="-1"/>
-											</LaneChangeTarget>
-										</LaneChangeAction>
-									</LateralAction>
+									<ActivateControllerAction lateral="false" longitudinal="true"/>
 								</PrivateAction>
 							</Action>
 							<StartTrigger>
 								<ConditionGroup>
-									<Condition conditionEdge="none" delay="0.0" name="distancetrigger">
-										<ByEntityCondition>
-											<TriggeringEntities triggeringEntitiesRule="any">
-												<EntityRef entityRef="hero"/>
-											</TriggeringEntities>
-											<EntityCondition>
-												<RelativeDistanceCondition entityRef="adversary" freespace="false" relativeDistanceType="cartesianDistance" rule="lessThan" value="40"/>
-											</EntityCondition>
-										</ByEntityCondition>
+									<Condition conditionEdge="rising" delay="0" name="starttrigger">
+										<ByValueCondition>
+											<SimulationTimeCondition rule="greaterThan" value="0"/>
+										</ByValueCondition>
 									</Condition>
 								</ConditionGroup>
 							</StartTrigger>
@@ -140,7 +102,7 @@
 				</ManeuverGroup>
 				<StartTrigger>
 					<ConditionGroup>
-						<Condition conditionEdge="rising" delay="0" name="starttrigger">
+						<Condition conditionEdge="rising" delay="50" name="starttrigger">
 							<ByValueCondition>
 								<SimulationTimeCondition rule="greaterThan" value="0"/>
 							</ByValueCondition>
