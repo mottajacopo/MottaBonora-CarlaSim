@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OpenSccenario.xsd">
-	<FileHeader author="Bonora_Motta" date="2021-02-10T10:38:44.209428" description="ego_cut_in" revMajor="1" revMinor="0"/>
+	<FileHeader author="Bonora_Motta" date="2021-02-10T11:05:45.922563" description="change_lane" revMajor="1" revMinor="0"/>
 	<ParameterDeclarations/>
 	<CatalogLocations/>
 	<RoadNetwork>
@@ -66,7 +66,7 @@
 							<SpeedAction>
 								<SpeedActionDynamics dynamicsDimension="distance" dynamicsShape="step" value="10"/>
 								<SpeedActionTarget>
-									<AbsoluteTargetSpeed value="15"/>
+									<AbsoluteTargetSpeed value="30"/>
 								</SpeedActionTarget>
 							</SpeedAction>
 						</LongitudinalAction>
@@ -74,7 +74,7 @@
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="4.7" x="-2.6" y="80" z="0.5"/>
+								<WorldPosition h="1.5603491453126792" x="413.02490234375" y="124.62825012207031" z="0.2819424271583557"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
@@ -83,7 +83,7 @@
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="4.7" x="-8.6" y="-80" z="0.5"/>
+								<WorldPosition h="-4.7228365613410705" x="413.87060546875" y="205.57997131347656"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
@@ -105,7 +105,7 @@
 										<LaneChangeAction>
 											<LaneChangeActionDynamics dynamicsDimension="distance" dynamicsShape="linear" value="25"/>
 											<LaneChangeTarget>
-												<RelativeTargetLane entityRef="adversary" value="2"/>
+												<RelativeTargetLane entityRef="adversary" value="-1"/>
 											</LaneChangeTarget>
 										</LaneChangeAction>
 									</LateralAction>
@@ -119,7 +119,7 @@
 												<EntityRef entityRef="hero"/>
 											</TriggeringEntities>
 											<EntityCondition>
-												<RelativeDistanceCondition entityRef="adversary" freespace="false" relativeDistanceType="cartesianDistance" rule="lessThan" value="8"/>
+												<RelativeDistanceCondition entityRef="adversary" freespace="false" relativeDistanceType="cartesianDistance" rule="lessThan" value="40"/>
 											</EntityCondition>
 										</ByEntityCondition>
 									</Condition>
@@ -137,17 +137,17 @@
 						</Condition>
 					</ConditionGroup>
 				</StartTrigger>
-				<StopTrigger/>
+				<StopTrigger>
+					<ConditionGroup>
+						<Condition conditionEdge="rising" delay="0" name="stop_simulation">
+							<ByValueCondition>
+								<SimulationTimeCondition rule="greaterThan" value="20"/>
+							</ByValueCondition>
+						</Condition>
+					</ConditionGroup>
+				</StopTrigger>
 			</Act>
 		</Story>
-		<StopTrigger>
-			<ConditionGroup>
-				<Condition conditionEdge="rising" delay="0" name="stop_simulation">
-					<ByValueCondition>
-						<SimulationTimeCondition rule="greaterThan" value="75"/>
-					</ByValueCondition>
-				</Condition>
-			</ConditionGroup>
-		</StopTrigger>
+		<StopTrigger/>
 	</Storyboard>
 </OpenSCENARIO>

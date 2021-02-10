@@ -16,7 +16,7 @@ import carla
 def get_random_spawn_points(offset):
 
     client = carla.Client('localhost', 2000)
-    client.set_timeout(2.0)
+    client.set_timeout(5.0)
     world = client.get_world()
     current_map = world.get_map()
 
@@ -143,6 +143,12 @@ class Scenario(ScenarioGenerator):
         #egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-9.4,-152.8,0.5,1.57079632679))
         egostart = pyoscx.TeleportAction(pyoscx.WorldPosition(-8.6,80,0.5,4.7))
         #egospeed = pyoscx.AbsoluteSpeedAction(15,pyoscx.TransitionDynamics(pyoscx.DynamicsShapes.step,pyoscx.DynamicsDimension.distance,10))
+        
+        
+        if(kwargs['randomPosition']):
+            egostart, targetstart = get_random_spawn_points(kwargs['initialOffset'])
+
+
 
 
         init.add_global_action(envAct)

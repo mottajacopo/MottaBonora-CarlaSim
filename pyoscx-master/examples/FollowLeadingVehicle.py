@@ -130,13 +130,13 @@ sb = pyoscx.StoryBoard(init,pyoscx.ValueTrigger('stop_simulation',0,pyoscx.Condi
 sb.add_story(story)
 
 ## create the scenario
-sce = pyoscx.Scenario('change_lane','Bonora_Motta',paramdec,entities=entities,storyboard = sb,roadnetwork=road,catalog=catalog)
+sce = pyoscx.Scenario('follow_leading_vehicle','Bonora_Motta',paramdec,entities=entities,storyboard = sb,roadnetwork=road,catalog=catalog)
 
 # display the scenario
 pyoscx.prettyprint(sce.get_element())
 
 # if you want to save it
-sce.write_xml('FollowMe.xosc',True)
+sce.write_xml('FollowLeadingVehicle.xosc',True)
 
 # if you have esmini downloaded and want to see the scenario (add path to esmini as second argument)
 #pyoscx.esminiRunner(sce,esminipath='/home/mander76/local/scenario_creation/esmini')

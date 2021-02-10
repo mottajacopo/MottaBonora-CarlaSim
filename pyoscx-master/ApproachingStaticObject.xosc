@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OpenSccenario.xsd">
-	<FileHeader author="Bonora_Motta" date="2021-02-02T15:53:42.567277" description="approaching_static_object" revMajor="1" revMinor="0"/>
+	<FileHeader author="Bonora_Motta" date="2021-02-10T10:38:13.544484" description="approaching_static_object" revMajor="1" revMinor="0"/>
 	<ParameterDeclarations>
 		<ParameterDeclaration name="leadingSpeed" parameterType="double" value="0.0"/>
 	</ParameterDeclarations>
@@ -76,7 +76,7 @@
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="4.7" x="386" y="228" z="0.5"/>
+								<WorldPosition h="4.7" x="-8.6" y="80" z="0.5"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
@@ -85,7 +85,7 @@
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="4.7" x="385" y="148" z="0.5"/>
+								<WorldPosition h="4.7" x="-8.6" y="-80" z="0.5"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
@@ -100,7 +100,7 @@
 						<EntityRef entityRef="hero"/>
 					</Actors>
 					<Maneuver name="my_maneuver">
-						<Event maximumExecutionCount="1" name="HeroStops" priority="overwrite">
+						<Event maximumExecutionCount="1" name="HeroSotps" priority="overwrite">
 							<Action name="HeroStops">
 								<PrivateAction>
 									<LongitudinalAction>

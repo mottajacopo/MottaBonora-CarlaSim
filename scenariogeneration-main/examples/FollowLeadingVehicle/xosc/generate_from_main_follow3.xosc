@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OpenSccenario.xsd">
-	<FileHeader author="Bonora_Motta" date="2021-02-10T10:38:44.209428" description="ego_cut_in" revMajor="1" revMinor="0"/>
-	<ParameterDeclarations/>
+	<FileHeader author="Bonora_Motta" date="2021-02-10T11:09:19.057846" description="follow_leading_vehicle" revMajor="1" revMinor="0"/>
+	<ParameterDeclarations>
+		<ParameterDeclaration name="leadingSpeed" parameterType="double" value="4.0"/>
+	</ParameterDeclarations>
 	<CatalogLocations/>
 	<RoadNetwork>
 		<LogicFile filepath="Town04"/>
@@ -62,19 +64,9 @@
 				</GlobalAction>
 				<Private entityRef="hero">
 					<PrivateAction>
-						<LongitudinalAction>
-							<SpeedAction>
-								<SpeedActionDynamics dynamicsDimension="distance" dynamicsShape="step" value="10"/>
-								<SpeedActionTarget>
-									<AbsoluteTargetSpeed value="15"/>
-								</SpeedActionTarget>
-							</SpeedAction>
-						</LongitudinalAction>
-					</PrivateAction>
-					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="4.7" x="-2.6" y="80" z="0.5"/>
+								<WorldPosition h="0.006885336682290862" x="229.87217712402344" y="246.03456115722656" z="0.2819424271583557"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
@@ -83,7 +75,7 @@
 					<PrivateAction>
 						<TeleportAction>
 							<Position>
-								<WorldPosition h="4.7" x="-8.6" y="-80" z="0.5"/>
+								<WorldPosition h="-0.010293672091617589" x="276.0906982421875" y="307.213134765625" z="0.0043487548828125"/>
 							</Position>
 						</TeleportAction>
 					</PrivateAction>
@@ -95,20 +87,20 @@
 			<Act name="my_act">
 				<ManeuverGroup maximumExecutionCount="1" name="mangroup">
 					<Actors selectTriggeringEntities="false">
-						<EntityRef entityRef="hero"/>
+						<EntityRef entityRef="adversary"/>
 					</Actors>
 					<Maneuver name="my_maneuver">
-						<Event maximumExecutionCount="1" name="HeroChangesLane" priority="overwrite">
-							<Action name="HeroChangesLane">
+						<Event maximumExecutionCount="1" name="LeadingVehicleKeepsVelocity" priority="overwrite">
+							<Action name="LeadingVehicleKeepsVelocity">
 								<PrivateAction>
-									<LateralAction>
-										<LaneChangeAction>
-											<LaneChangeActionDynamics dynamicsDimension="distance" dynamicsShape="linear" value="25"/>
-											<LaneChangeTarget>
-												<RelativeTargetLane entityRef="adversary" value="2"/>
-											</LaneChangeTarget>
-										</LaneChangeAction>
-									</LateralAction>
+									<LongitudinalAction>
+										<SpeedAction>
+											<SpeedActionDynamics dynamicsDimension="distance" dynamicsShape="step" value="150"/>
+											<SpeedActionTarget>
+												<AbsoluteTargetSpeed value="$leadingSpeed"/>
+											</SpeedActionTarget>
+										</SpeedAction>
+									</LongitudinalAction>
 								</PrivateAction>
 							</Action>
 							<StartTrigger>
@@ -119,7 +111,7 @@
 												<EntityRef entityRef="hero"/>
 											</TriggeringEntities>
 											<EntityCondition>
-												<RelativeDistanceCondition entityRef="adversary" freespace="false" relativeDistanceType="cartesianDistance" rule="lessThan" value="8"/>
+												<RelativeDistanceCondition entityRef="adversary" freespace="false" relativeDistanceType="cartesianDistance" rule="lessThan" value="40"/>
 											</EntityCondition>
 										</ByEntityCondition>
 									</Condition>
@@ -137,17 +129,17 @@
 						</Condition>
 					</ConditionGroup>
 				</StartTrigger>
-				<StopTrigger/>
+				<StopTrigger>
+					<ConditionGroup>
+						<Condition conditionEdge="rising" delay="0" name="stop_simulation">
+							<ByValueCondition>
+								<SimulationTimeCondition rule="greaterThan" value="20"/>
+							</ByValueCondition>
+						</Condition>
+					</ConditionGroup>
+				</StopTrigger>
 			</Act>
 		</Story>
-		<StopTrigger>
-			<ConditionGroup>
-				<Condition conditionEdge="rising" delay="0" name="stop_simulation">
-					<ByValueCondition>
-						<SimulationTimeCondition rule="greaterThan" value="75"/>
-					</ByValueCondition>
-				</Condition>
-			</ConditionGroup>
-		</StopTrigger>
+		<StopTrigger/>
 	</Storyboard>
 </OpenSCENARIO>
