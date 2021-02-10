@@ -179,7 +179,8 @@ class Scenario(ScenarioGenerator):
         mangr.add_actor('hero')
         mangr.add_maneuver(man)
         starttrigger = pyoscx.ValueTrigger('starttrigger',0,pyoscx.ConditionEdge.rising,pyoscx.SimulationTimeCondition(0,pyoscx.Rule.greaterThan))
-        act = pyoscx.Act('my_act',starttrigger)
+        stoptrigger = pyoscx.ValueTrigger('stop_simulation',0,pyoscx.ConditionEdge.rising,pyoscx.SimulationTimeCondition(20,pyoscx.Rule.greaterThan),'stop')
+        act = pyoscx.Act('my_act',starttrigger,stoptrigger)
         act.add_maneuver_group(mangr)
 
         # create the story
@@ -190,7 +191,9 @@ class Scenario(ScenarioGenerator):
 
 
         ## create the storyboard
-        sb = pyoscx.StoryBoard(init,pyoscx.ValueTrigger('stop_simulation',0,pyoscx.ConditionEdge.rising,pyoscx.SimulationTimeCondition(75,pyoscx.Rule.greaterThan),'stop'))
+        
+
+        sb = pyoscx.StoryBoard(init)
         sb.add_story(story)
 
         ## create the scenario
